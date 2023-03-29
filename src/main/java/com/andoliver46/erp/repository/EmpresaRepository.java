@@ -35,7 +35,7 @@ public class EmpresaRepository implements Serializable {
 		return entityManager.merge(empresa);
 	}
 	
-	public void remover(Empresa empresa) {
+	public void delete(Empresa empresa) {
 		empresa = findById(empresa.getId());
 		entityManager.remove(empresa);
 	}
