@@ -1,58 +1,45 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	template="WEB-INF/template/Layout.xhtml">
 
-<h:head>
-	<meta charset="UTF-8" />
-	<title>Gestão Empresas</title>
+	<ui:define name="titulo">
+		Cadastro de empresas
+	</ui:define>
 
-	<h:outputStylesheet library="algaworks" name="estilo.css" />
-	
-	<f:metadata>
-		<f:viewAction action="#{gestaoEmpresasBean.todasEmpresas}" />
-	</f:metadata>
-</h:head>
+	<ui:define name="conteudo">
 
-<h:body>
+		<f:metadata>
+			<f:viewAction action="#{gestaoEmpresasBean.todasEmpresas}" />
+		</f:metadata>
 
-	<header>
-		<h:graphicImage library="algaworks" name="logo.png" />
-	</header>
-	
-	<h2>Cadastro de Empresas</h2>
-	
-	<div id="conteudo">
 		<h:form>
-			<p:dataTable value="#{gestaoEmpresasBean.listaEmpresas}" var="empresa" 
-				emptyMessage="Nenhuma empresa cadastrada." 
+			<p:dataTable value="#{gestaoEmpresasBean.listaEmpresas}"
+				var="empresa" emptyMessage="Nenhuma empresa cadastrada."
 				paginator="true" rows="10" paginatorPosition="bottom">
-			
+
 				<p:column headerText="Razão social" sortBy="#{empresa.razaoSocial}">
 					<h:outputText value="#{empresa.razaoSocial}" />
 				</p:column>
-				
+
 				<p:column headerText="Nome Fantasia">
 					<h:outputText value="#{empresa.nomeFantasia}" />
 				</p:column>
-				
+
 				<p:column headerText="Tipo Empresa">
 					<h:outputText value="#{empresa.tipo}" />
 				</p:column>
-			
+
 				<p:column headerText="Ramo Atividade">
 					<h:outputText value="#{empresa.ramoAtividade.descricao}" />
 				</p:column>
-			
+
 			</p:dataTable>
 		</h:form>
-	</div>
-	
-</h:body>
 
-<footer>
-	<h:outputText value="AlgaWorks Curso JSF - Essencial " />
-</footer>
+	</ui:define>
 
-</html>
+</ui:composition>
