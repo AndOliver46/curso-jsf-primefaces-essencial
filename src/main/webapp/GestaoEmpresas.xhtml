@@ -16,12 +16,19 @@
 			<f:viewAction action="#{gestaoEmpresasBean.todasEmpresas}" />
 		</f:metadata>
 
-		<h:form>	
+		<h:form>
+			
+			<p:messages id="messages" closable="true">
+            	<p:autoUpdate/>
+        	</p:messages>
+		
 			<p:toolbar>
 				<f:facet name="left">
-					<p:inputText placeholder="Digite aqui um termo para pesquisa..." style="margin-right:5px" size="40"/>
+					<p:inputText placeholder="Digite aqui um termo para pesquisa..." style="margin-right:5px" size="40"
+						value="#{gestaoEmpresasBean.termoPesquisa}"/>
 					
-					<p:commandButton value="Pesquisar" icon="pi pi-search" style="margin-right:10px"/>
+					<p:commandButton value="Pesquisar" icon="pi pi-search" style="margin-right:10px"
+						actionListener="#{gestaoEmpresasBean.pesquisar}" update="tabelaEmpresas"/>
 					
 					<i class="pi pi-bars px-2" style="margin-right:10px"/>
 					
@@ -39,8 +46,9 @@
 			</p:toolbar>
 		
 			<p:dataTable value="#{gestaoEmpresasBean.listaEmpresas}"
-				var="empresa" emptyMessage="Nenhuma empresa cadastrada."
-				paginator="true" rows="10" paginatorPosition="bottom">
+				var="empresa" emptyMessage="Nenhuma empresa a ser exibida."
+				paginator="true" rows="10" paginatorPosition="bottom"
+				id="tabelaEmpresas">
 
 				<p:column headerText="Razão social" sortBy="#{empresa.razaoSocial}">
 					<h:outputText value="#{empresa.razaoSocial}" />
