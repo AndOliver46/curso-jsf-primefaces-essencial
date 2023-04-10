@@ -19,7 +19,6 @@
 		<h:form>
 
 			<p:messages id="messages" closable="true">
-				<p:autoUpdate />
 			</p:messages>
 
 			<p:toolbar>
@@ -32,7 +31,7 @@
 					<p:commandButton value="Pesquisar" icon="pi pi-search"
 						style="margin-right:10px"
 						actionListener="#{gestaoEmpresasBean.pesquisar}"
-						update="tabelaEmpresas" process="@this termoPesquisa" />
+						update="tabelaEmpresas messages" process="@this termoPesquisa" />
 
 					<i class="pi pi-bars px-2" style="margin-right: 10px" />
 
@@ -82,16 +81,18 @@
 			<p:dialog header="Nova empresa" widgetVar="empresaDialogWidgetVar"
 				modal="true" resizable="false" closeOnEscape="true"
 				id="empresaDialog">
+				
+				<p:messages id="empresaMessages" />
 
 				<h:panelGrid columns="2" id="empresaPanelGrid"
 					rendered="#{gestaoEmpresasBean.empresa ne null}">
 					<p:outputLabel value="Razao Social: " for="razaoSocial" />
 					<p:inputText id="razaoSocial" size="80" maxlength="120"
-						required="true" value="#{gestaoEmpresasBean.empresa.razaoSocial}" />
+						value="#{gestaoEmpresasBean.empresa.razaoSocial}" />
 
 					<p:outputLabel value="Nome Fantasia: " for="nomeFantasia" />
 					<p:inputText id="nomeFantasia" size="80" maxlength="120"
-						required="true" value="#{gestaoEmpresasBean.empresa.nomeFantasia}" />
+						value="#{gestaoEmpresasBean.empresa.nomeFantasia}" />
 
 					<p:outputLabel value="Tipo Empresa: " for="tipo" />
 					<p:selectOneMenu id="tipo"
@@ -121,9 +122,10 @@
 					<h:outputLabel />
 					<p:commandButton value="Salvar"
 						actionListener="#{gestaoEmpresasBean.salvar}"
-						update="tabelaEmpresas empresaPanelGrid"
-						oncomplete="PF('empresaDialogWidgetVar').hide()"
-						process="empresaDialog" />
+						update="tabelaEmpresas empresaPanelGrid empresaMessages"
+						oncomplete="if (!args.validationFailed) PF('empresaDialogWidgetVar').hide()"
+						process="empresaDialog" 
+						/>
 				</h:panelGrid>
 
 			</p:dialog>
