@@ -21,7 +21,7 @@
 			<p:messages id="messages" closable="true">
 			</p:messages>
 
-			<p:toolbar>
+			<p:toolbar id="toolbar">
 				<f:facet name="left">
 					<p:inputText id="termoPesquisa"
 						placeholder="Digite aqui um termo para pesquisa..."
@@ -46,10 +46,12 @@
 					<i class="pi pi-bars px-2" style="margin-right: 10px" />
 
 					<p:commandButton title="Editar" icon="pi pi-file-edit"
-						styleClass="ui-button-warning mr-2" style="margin-right:10px" />
+						styleClass="ui-button-warning mr-2" style="margin-right:10px"
+						disabled="#{not gestaoEmpresasBean.empresaSelecionada}" />
 
 					<p:commandButton title="Exluir" icon="pi pi-trash"
-						styleClass="ui-button-danger" style="margin-right:10px" />
+						styleClass="ui-button-danger" style="margin-right:10px"
+						disabled="#{not gestaoEmpresasBean.empresaSelecionada}" />
 
 					<p:commandButton title="Exportar para Excel"
 						icon="pi pi-file-export" styleClass="ui-button-help mr-2"
@@ -60,7 +62,12 @@
 			<p:dataTable value="#{gestaoEmpresasBean.listaEmpresas}"
 				var="empresa" emptyMessage="Nenhuma empresa a ser exibida."
 				paginator="true" rows="10" paginatorPosition="bottom"
-				id="tabelaEmpresas">
+				id="tabelaEmpresas" selectionMode="single"
+				selection="#{gestaoEmpresasBean.empresa}" rowKey="#{empresa.id}">
+
+				<p:ajax event="rowSelect" update="frm:toolbar" />
+				
+				<p:ajax event="rowUnselect" update="frm:toolbar" />
 
 				<p:column headerText="Razão social" sortBy="#{empresa.razaoSocial}">
 					<h:outputText value="#{empresa.razaoSocial}" />
@@ -83,7 +90,7 @@
 			<p:dialog header="Nova empresa" widgetVar="empresaDialogWidgetVar"
 				modal="true" resizable="false" closeOnEscape="true"
 				id="empresaDialog">
-				
+
 				<p:defaultCommand target="salvarCommandButton" scope="empresaDialog" />
 
 				<p:messages id="empresaMessages" />
@@ -128,8 +135,7 @@
 						actionListener="#{gestaoEmpresasBean.salvar}"
 						update="empresaPanelGrid empresaMessages"
 						oncomplete="if (!args.validationFailed) PF('empresaDialogWidgetVar').hide()"
-						process="empresaDialog"
-						id="salvarCommandButton" />
+						process="empresaDialog" id="salvarCommandButton" />
 				</h:panelGrid>
 
 			</p:dialog>
