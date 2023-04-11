@@ -83,6 +83,8 @@
 			<p:dialog header="Nova empresa" widgetVar="empresaDialogWidgetVar"
 				modal="true" resizable="false" closeOnEscape="true"
 				id="empresaDialog">
+				
+				<p:defaultCommand target="salvarCommandButton" scope="empresaDialog" />
 
 				<p:messages id="empresaMessages" />
 
@@ -126,7 +128,8 @@
 						actionListener="#{gestaoEmpresasBean.salvar}"
 						update="empresaPanelGrid empresaMessages"
 						oncomplete="if (!args.validationFailed) PF('empresaDialogWidgetVar').hide()"
-						process="empresaDialog" />
+						process="empresaDialog"
+						id="salvarCommandButton" />
 				</h:panelGrid>
 
 			</p:dialog>
