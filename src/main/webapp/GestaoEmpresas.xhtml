@@ -56,7 +56,10 @@
 
 					<p:commandButton title="Exluir" icon="pi pi-trash"
 						styleClass="ui-button-danger" style="margin-right:10px"
-						disabled="#{not gestaoEmpresasBean.empresaSelecionada}" />
+						disabled="#{not gestaoEmpresasBean.empresaSelecionada}" 
+						actionListener="#{gestaoEmpresasBean.excluir}" 
+						update="messages tabelaEmpresas toolbar" 
+						process="@this" />
 
 					<p:commandButton title="Exportar para Excel"
 						icon="pi pi-file-export" styleClass="ui-button-help mr-2"
