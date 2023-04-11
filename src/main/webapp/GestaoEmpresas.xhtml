@@ -17,7 +17,7 @@
 		</f:metadata>
 
 		<h:form id="frm">
-
+		
 			<p:messages id="messages" closable="true">
 			</p:messages>
 
@@ -59,7 +59,9 @@
 						disabled="#{not gestaoEmpresasBean.empresaSelecionada}" 
 						actionListener="#{gestaoEmpresasBean.excluir}" 
 						update="messages tabelaEmpresas toolbar" 
-						process="@this" />
+						process="@this">
+						<p:confirm icon="ui-icon-alert" header="Confirmação de exclusão" message="Confirma a exclusão da empresa?" />
+					</p:commandButton>
 
 					<p:commandButton title="Exportar para Excel"
 						icon="pi pi-file-export" styleClass="ui-button-help mr-2"

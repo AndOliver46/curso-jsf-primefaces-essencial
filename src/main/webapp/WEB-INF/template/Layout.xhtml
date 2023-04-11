@@ -25,6 +25,13 @@
 	<div id="conteudo">
 		<ui:insert name="conteudo" />
 	</div>
+	
+	<h:form>
+        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+            <p:commandButton value="Cancelar" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+            <p:commandButton value="Confirmar" type="button" styleClass="ui-confirmdialog-yes" />
+        </p:confirmDialog>
+	</h:form>
 
 </h:body>
 
