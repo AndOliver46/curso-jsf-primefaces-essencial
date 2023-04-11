@@ -39,7 +39,9 @@
 						style="margin-right:10px"
 						actionListener="#{gestaoEmpresasBean.prepararNovaEmpresa}"
 						update="empresaDialog"
-						oncomplete="PF('empresaDialogWidgetVar').show()" process="@this" />
+						oncomplete="PF('empresaDialogWidgetVar').show()" process="@this">
+						<p:resetInput target="empresaDialog" />
+					</p:commandButton>
 
 					<i class="pi pi-bars px-2" style="margin-right: 10px" />
 
@@ -81,7 +83,7 @@
 			<p:dialog header="Nova empresa" widgetVar="empresaDialogWidgetVar"
 				modal="true" resizable="false" closeOnEscape="true"
 				id="empresaDialog">
-				
+
 				<p:messages id="empresaMessages" />
 
 				<h:panelGrid columns="2" id="empresaPanelGrid"
@@ -124,8 +126,7 @@
 						actionListener="#{gestaoEmpresasBean.salvar}"
 						update="empresaPanelGrid empresaMessages"
 						oncomplete="if (!args.validationFailed) PF('empresaDialogWidgetVar').hide()"
-						process="empresaDialog" 
-						/>
+						process="empresaDialog" />
 				</h:panelGrid>
 
 			</p:dialog>
