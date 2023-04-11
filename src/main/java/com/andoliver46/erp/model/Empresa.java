@@ -1,7 +1,6 @@
 package com.andoliver46.erp.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
 
@@ -17,39 +16,50 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.br.CNPJ;
 
 @Entity
 @Table(name = "empresa")
 public class Empresa implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@NotEmpty(message = "Nome fantasia: Preenchimento obrigatório")
 	@Column(name = "nome_fantasia", nullable = false, length = 80)
 	private String nomeFantasia;
 
+	@NotEmpty(message = "Razao Social: Preenchimento obrigatório")
 	@Column(name = "razao_social", nullable = false, length = 120)
 	private String razaoSocial;
 	
+	@CNPJ
+	@NotNull(message = "CNPJ: Preenchimento obrigatório")
 	@Column(nullable = false, length = 18)
 	private String cnpj;
 	
+	@NotNull(message = "Data fundação: Preenchimento obrigatório")
+	@Past(message = "Data de fundação inválida!")
 	@Column(name = "data_fundacao")
 	@Temporal(TemporalType.DATE)
 	private Date dataFundacao;
 
+	@NotNull(message = "Ramo atividade: Preenchimento obrigatório")
 	@ManyToOne
 	@JoinColumn(name = "ramo_atividade_id", nullable = false)
 	private RamoAtividade ramoAtividade;
 	
+	@NotNull(message = "Tipo empresa: Preenchimento obrigatório")
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false, length = 30)
 	private TipoEmpresa tipo;
-	
-	@Column(precision = 10, scale = 2)
-	private BigDecimal faturamento;
 
 	public Long getId() {
 		return id;
@@ -105,14 +115,6 @@ public class Empresa implements Serializable {
 
 	public void setTipo(TipoEmpresa tipo) {
 		this.tipo = tipo;
-	}
-
-	public BigDecimal getFaturamento() {
-		return faturamento;
-	}
-
-	public void setFaturamento(BigDecimal faturamento) {
-		this.faturamento = faturamento;
 	}
 
 	@Override
