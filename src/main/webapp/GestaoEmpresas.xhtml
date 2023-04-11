@@ -47,7 +47,12 @@
 
 					<p:commandButton title="Editar" icon="pi pi-file-edit"
 						styleClass="ui-button-warning mr-2" style="margin-right:10px"
-						disabled="#{not gestaoEmpresasBean.empresaSelecionada}" />
+						disabled="#{not gestaoEmpresasBean.empresaSelecionada}"
+						actionListener="#{gestaoEmpresasBean.prepararEdicao}"
+						update="empresaDialog"
+						oncomplete="PF('empresaDialogWidgetVar').show()" process="@this">
+						<p:resetInput target="empresaDialog" />
+					</p:commandButton>
 
 					<p:commandButton title="Exluir" icon="pi pi-trash"
 						styleClass="ui-button-danger" style="margin-right:10px"
@@ -66,7 +71,7 @@
 				selection="#{gestaoEmpresasBean.empresa}" rowKey="#{empresa.id}">
 
 				<p:ajax event="rowSelect" update="frm:toolbar" />
-				
+
 				<p:ajax event="rowUnselect" update="frm:toolbar" />
 
 				<p:column headerText="Razão social" sortBy="#{empresa.razaoSocial}">
