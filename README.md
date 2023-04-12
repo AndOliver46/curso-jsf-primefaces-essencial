@@ -1,23 +1,24 @@
-## Visão geral : </br>
-Webapp simples para manipulação de dados de empresas cadastradas. Construido com a especificação Java Server Faces (Mojarra) e componentes PrimeFaces. </br>
+## General vision : </br> 
+Simple WebApp for data manipulation and registration of companies. Built with Java Server Faces specification (Mojarra) and PrimeFaces components. </br>
 
-## Instruções : </br>
-### Requerimentos para executar projeto: </br>
+### Requirements to run the project: </br>
 - Java 8 </br>
 - TomCat Server 9.0 </br>
 - MySQL Server </br>
 
-### Rodar projeto:</br>
-Instalar Server Tomcat 9.0 no Eclipse; </br>
-Iniciar servidor MySQL com configurações corretas de conexão </br>
-Criar a base de dados "cursojsfprimefaces" no MySQL </br>
-Importar projeto no Eclipse </br>
-Rodar projeto no Servidor Tomcat </br>
+## Instructions : </br>
 
-### Abrir no navegador:
+### Steps:</br>
+Install Tomcat Server 9.0 in Eclipse IDE; </br>
+Start MySQL Server with the correct configurations, shown below </br>
+Create "cursojsfprimefaces" database in MySQL</br>
+Import the project on Eclipse IDE</br>
+Run on TomCat Container</br>
+
+### In your Web Browser, access:
 http://localhost:8080/curso-jsf-primefaces-essencial/
 
-### persistence.xml (Configurações de conexão ao banco de dados)
+### persistence.xml (Database access configurations)
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1"
